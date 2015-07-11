@@ -12,6 +12,7 @@ set(RSC ${CMAKE_CURRENT_SOURCE_DIR}/Data/ressources)
 set(FOR ${CMAKE_CURRENT_SOURCE_DIR}/Data/forms)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 SET(HDRS
     ${HDR}/App.hpp
