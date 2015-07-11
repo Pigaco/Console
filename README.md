@@ -1,6 +1,19 @@
 Piga Console {#mainpage}
 ============
 
+### Checking out this repository
+This repository makes heavy use of git submodules to pull in all required libraries from the Pigaco project. To
+have the full repository, you have to clone the repo with all submodules in one go, or check out all 
+submodules after you have cloned it.
+
+Clone with submodules included
+
+    git clone --recursive git://github.com/foo/bar.git
+
+Checkout after you have cloned the repository: 
+
+    git submodule update --init --recursive
+
 [![Build Status](http://root.maximaximal.com/jenkins/buildStatus/icon?job=Piga&build=27)](http://root.maximaximal.com/jenkins/job/Piga/27/)
 
 This is the official repository for the piga source code. The piga project 
