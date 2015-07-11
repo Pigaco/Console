@@ -160,11 +160,8 @@ if(${Wt_FOUND})
 endif()
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/libpiga/)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pihud/)
 add_dependencies(pigaco piga)
 target_link_libraries(pigaco piga)
-target_link_libraries(pigaco pihud)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/pihud/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libpiga/include)
 
 add_custom_command(TARGET pigaco
