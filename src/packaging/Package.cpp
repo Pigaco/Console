@@ -193,7 +193,7 @@ void Package::fromDirectory(const std::string &dir)
     specsFile.open(QFile::ReadOnly);
     if(specsFile.isReadable())
     {
-        loadSpecs(specsFile.readAll().toStdString());
+        loadSpecs(QString(specsFile.readAll()).toStdString());
     }
     else
     {
