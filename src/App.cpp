@@ -64,29 +64,36 @@ namespace pigaco
                                             + QString::number(PIGA_MINOR_VERSION) + "." + QString::number(PIGA_MINI_VERSION));
 
         QCommandLineOption helpOption = cmdParser.addHelpOption();
-        cmdParser.addOptions({
-                                 {{"pack-folder", "p"},
-                                    m_guiApplication->translate("main", "Package the specified folder."),
-                                    m_guiApplication->translate("main", "package folder")},
-                                 {{"install-package", "i"},
-                                    m_guiApplication->translate("main", "Install a package."),
-                                    m_guiApplication->translate("main", "path to the PPK file or the directory.")},
-                                 {"package-name",
-                                    m_guiApplication->translate("main", "The package name. (optional)"),
-                                    m_guiApplication->translate("main", "package name")},
-                                 {"package-version",
-                                    m_guiApplication->translate("main", "The package version. (optional)"),
-                                    m_guiApplication->translate("main", "package version")},
-                                 {"package-author",
-                                    m_guiApplication->translate("main", "The package version. (optional)"),
-                                    m_guiApplication->translate("main", "package author")},
-                                 {{"package-output", "o"},
-                                    m_guiApplication->translate("main", "The package output file. (required when creating packages)"),
-                                    m_guiApplication->translate("main", "package output file")},
-                                 {{"read-package", "r"},
-                                    m_guiApplication->translate("main", "Reads a package and lists the information found about it."),
-                                    m_guiApplication->translate("main", "Path to the package to read.")},
-                             });
+
+        QCommandLineOption packFolderOption("pack-folder", 
+                m_guiApplication->translate("main", "Pack the specified folder."),
+                m_guiApplication->translate("main", "package folder"));
+        QCommandLineOption installPackageOption("install-package", 
+                m_guiApplication->translate("main", "Install a package."),
+                m_guiApplication->translate("main", "path to the PPK file or the directory."));
+        QCommandLineOption packageNameOption("package-name", 
+                m_guiApplication->translate("main", "The package name. (optional)"),
+                m_guiApplication->translate("main", "package name"));
+        QCommandLineOption packageVersionOption("package-version", 
+                m_guiApplication->translate("main", "The package version. (optional)"),
+                m_guiApplication->translate("main", "package version"));
+        QCommandLineOption packageAuthorOption("package-author", 
+                m_guiApplication->translate("main", "The package version. (optional)"),
+                m_guiApplication->translate("main", "package author"));
+        QCommandLineOption packageOutputOption("package-output", 
+                m_guiApplication->translate("main", "The package output file. (required when creating packages)"),
+                m_guiApplication->translate("main", "package output file"));
+        QCommandLineOption packageReadOption("read-package", 
+                m_guiApplication->translate("main", "Reads a package and lists the information found about it."),
+                m_guiApplication->translate("main", "Path to the package to read."));
+
+        cmdParser.addOption(packFolderOption);
+        cmdParser.addOption(installPackageOption);
+        cmdParser.addOption(packageNameOption);
+        cmdParser.addOption(packageVersionOption);
+        cmdParser.addOption(packageAuthorOption);
+        cmdParser.addOption(packageOutputOption);
+        cmdParser.addOption(packageReadOption);
 
         cmdParser.parse(m_guiApplication->arguments());
 
