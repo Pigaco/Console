@@ -11,6 +11,7 @@
 
 #include <QQmlContext>
 #include <QApplication>
+#include <QtQml>
 #include <QDir>
 
 #include <QCommandLineParser>

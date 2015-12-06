@@ -141,7 +141,7 @@ elseif()
     message(STATUS "Did not find Yaml-Cpp! Please install it before you try to compile again.")
 endif()
 
-find_package(QuaZip)
+find_package(QuaZip REQUIRED)
 if(${QUAZIP_FOUND})
     target_link_libraries(pigaco ${QUAZIP_LIBRARIES})
     include_directories(${QUAZIP_INCLUDE_DIRS})
