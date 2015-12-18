@@ -80,24 +80,6 @@ ADD_DEFINITIONS(-DQT_NO_KEYWORDS)
 
 target_link_libraries(pigaco Qt5::Widgets Qt5::Qml Qt5::Quick)
 
-find_package(SDL2)
-if(${SDL2_FOUND})
-    target_link_libraries(pigaco ${SDL2_LIBRARY})
-    include_directories(${SDL2_INCLUDE_DIRS})
-endif()
-
-find_package(SDL2image)
-if(${SDL2IMAGE_FOUND})
-    target_link_libraries(pigaco ${SDL2IMAGE_LIBRARY})
-    include_directories(${SDL2IMAGE_INCLUDE_DIRS})
-endif()
-
-find_package(SDL2ttf)
-if(${SDL2TTF_FOUND})
-    target_link_libraries(pigaco ${SDL2TTF_LIBRARY})
-    include_directories(${SDL2TTF_INCLUDE_DIRS})
-endif()
-
 find_package(Boost REQUIRED COMPONENTS system thread filesystem)
 
 if(${Boost_FOUND})
@@ -170,9 +152,11 @@ add_custom_command(TARGET pigaco
                    COMMAND python
                    ARGS ${CMAKE_CURRENT_SOURCE_DIR}/distributor.py ${CMAKE_CURRENT_BINARY_DIR}/dist)
 
+target_link_libraries(pigaco -lrt)
+
 # Activate C++11
-list(APPEND CMAKE_CXX_FLAGS "-std=c++11 -lrt ${CMAKE_CXX_FLAGS}")
+list(APPEND CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
-	list(APPEND ${CMAKE_CXX_FLAGS} "-Wall -std=c++11 -lrt ${CMAKE_CXX_FLAGS}")
+	list(APPEND ${CMAKE_CXX_FLAGS} "-Wall -std=c++11 ${CMAKE_CXX_FLAGS}")
 endif()
