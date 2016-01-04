@@ -362,6 +362,11 @@ namespace pigaco
                     break;
             }
         }
+        else if(gameEvent.type() == piga::GameEvent::ChangeOutput)
+        {
+            m_cacheGameEvent = gameEvent;
+            m_host->pushChangeOutputEvent(m_cacheGameEvent.outputChanged);
+        }
     }
 
     void App::aboutToQuit()

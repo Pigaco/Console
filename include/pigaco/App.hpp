@@ -77,5 +77,7 @@ namespace pigaco
 
             bool m_end = false;
             bool m_isSleeping = false;
+
+            piga::GameEvent m_cacheGameEvent;
     };
 }

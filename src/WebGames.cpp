@@ -58,7 +58,7 @@ WebGames::WebGames(App *app, Wt::WContainerWidget *parent)
     this->addWidget(installNewPackage);
 
     Wt::WFileUpload *newPackageUpload = new Wt::WFileUpload(this);
-    newPackageUpload->setFileTextSize(100 * 1000 * 1000 * 1000);
+    newPackageUpload->setFileTextSize(2147483647);
     newPackageUpload->setProgressBar(new Wt::WProgressBar());
     newPackageUpload->setMargin(10, Wt::Right);
 
