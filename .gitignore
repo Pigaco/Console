@@ -3,6 +3,7 @@
 *.swp
 
 build/
+./build*
 dist/
 libpiga/build/
 .kdev4
