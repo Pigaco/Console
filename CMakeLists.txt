@@ -14,6 +14,10 @@ set(FOR ${CMAKE_CURRENT_SOURCE_DIR}/Data/forms)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+set(VERSION_MAJOR "1" CACHE STRING "Major-Version")
+set(VERSION_MINOR "0" CACHE STRING "Minor-Version")
+set(VERSION_PATCH "0" CACHE STRING "Patch-Version")
+
 SET(HDRS
     ${HDR}/App.hpp
     ${HDR}/DirectoryScanner.hpp
@@ -157,9 +161,9 @@ target_link_libraries(pigaco -lrt)
 install(TARGETS pigaco DESTINATION pigaco)
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Pigaco Console Suite")
 set(CPACK_PACKAGE_VENDOR "Pigaco")
-set(CPACK_PACKAGE_VERSION_MAJOR "0")
-set(CPACK_PACKAGE_VERSION_MINOR "0")
-set(CPACK_PACKAGE_VERSION_PATCH "1")
+set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
 set(CPACK_DEBIAN_PACKAGE_NAME "piga-pigaco")
 set(CPACK_PACKAGE_NAME "piga-pigaco")	
 set(CPACK_GENERATOR "DEB")
