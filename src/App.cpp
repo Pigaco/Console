@@ -17,7 +17,7 @@
 #include <QCommandLineParser>
 
 #define ELPP_NO_DEFAULT_LOG_FILE
-#include <../../include/easylogging++.h>
+#include <easylogging++.h>
 
 #include <Wt/WServer>
 #include <pigaco/WebAdmin.hpp>

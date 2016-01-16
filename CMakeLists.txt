@@ -17,6 +17,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 set(VERSION_MAJOR "1" CACHE STRING "Major-Version")
 set(VERSION_MINOR "0" CACHE STRING "Minor-Version")
 set(VERSION_PATCH "0" CACHE STRING "Patch-Version")
+set(VERSION_TWEAK "0" CACHE STRING "Tweak-Version")
 
 SET(HDRS
     ${HDR}/App.hpp
@@ -146,10 +147,14 @@ if(${Wt_FOUND})
     include_directories(${Wt_INCLUDE_DIR})
 endif()
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/libpiga/)
-add_dependencies(pigaco piga)
-target_link_libraries(pigaco piga)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libpiga/include)
+find_package(Libpiga REQUIRED)
+if(${Libpiga_FOUND})
+    target_link_libraries(pigaco ${Libpiga_LIBRARIES})
+    include_directories(${Libpiga_INCLUDE_DIRS})
+    message(STATUS "Libpiga found!: " ${Libpiga_LIBRARIES})
+else()
+    message(STATUS "Libpiga not found!")
+endif()
 
 add_custom_command(TARGET pigaco
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/distributor.py
@@ -164,6 +169,7 @@ set(CPACK_PACKAGE_VENDOR "Pigaco")
 set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
+set(CPACK_PACKAGE_VERSION_TWEAK ${VERSION_TWEAK})
 set(CPACK_DEBIAN_PACKAGE_NAME "piga-pigaco")
 set(CPACK_PACKAGE_NAME "piga-pigaco")	
 set(CPACK_GENERATOR "DEB")
