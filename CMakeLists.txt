@@ -154,6 +154,18 @@ add_custom_command(TARGET pigaco
 
 target_link_libraries(pigaco -lrt)
 
+install(TARGETS pigaco DESTINATION pigaco)
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Pigaco Console Suite")
+set(CPACK_PACKAGE_VENDOR "Pigaco")
+set(CPACK_PACKAGE_VERSION_MAJOR "0")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_PATCH "1")
+set(CPACK_DEBIAN_PACKAGE_NAME "piga-pigaco")
+set(CPACK_PACKAGE_NAME "piga-pigaco")	
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Max Heisinger <mail@maximaximal.com>")
+include(CPack)
+
 # Activate C++11
 list(APPEND CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
