@@ -27,6 +27,8 @@
 
 #include <boost/filesystem.hpp>
 
+#include <yaml-cpp/yaml.h>
+
 INITIALIZE_EASYLOGGINGPP
 
 namespace pigaco
@@ -186,6 +188,25 @@ namespace pigaco
 
         m_playerManager = std::make_shared<piga::PlayerManager>();
         m_host = std::make_shared<piga::Host>(configPath, m_playerManager);
+
+        std::string packagesConfigFile = "Packages.yml";
+        std::string packagesPath = "Games";
+
+        //Try to read configuration file.
+        try {
+            YAML::Node doc = YAML::LoadAllFromFile(configPath).front();
+
+            if(doc["PackagesPath"]) {
+                packagesPath = doc["PackagesPath"].as<std::string>();
+                LOG(DEBUG) << "No \"PackagesPath\" property set in \"" << configPath << "\". Using \"" << packagesPath << "\".";
+            }
+            if(doc["PackagesConfigFile"]) {
+                packagesPath = doc["PackagesConfigFile"].as<std::string>();
+                LOG(DEBUG) << "No \"PackagesConfigFile\" property set in \"" << configPath << "\". Using \"" << packagesConfigFile << "\".";
+            }
+        } catch(YAML::BadFile &e) {
+            LOG(INFO) << "Config file is not readable!";
+        }
 
         LOG(INFO) << "Starting the piga host.";
         m_host->init();

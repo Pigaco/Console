@@ -30,13 +30,13 @@ void PackageManager::readData(const std::string &datafile, const std::string &di
     LOG(INFO) << "Scanning directory \"" << dir << "\".";
     if(!fs::exists(dir))
     {
-        LOG(FATAL) << "The path \"" << dir.c_str() << "\" does not exist!";
-        return;
+        LOG(WARNING) << "The path \"" << dir.c_str() << "\" does not exist!";
+        LOG(WARNING) << "Creating path \"" << dir.c_str() << "\". ";
+        fs::create_directories(dir);
     }
     if(!fs::is_directory(dir))
     {
         LOG(FATAL) << "The path \"" << dir.c_str() << "\" is not a directory!";
-        return;
     }
     fs::directory_iterator end_it;
     for(fs::directory_iterator it(dir); it != end_it; ++it)
