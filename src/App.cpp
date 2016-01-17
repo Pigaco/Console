@@ -25,6 +25,8 @@
 #include <pigaco/packaging/Package.hpp>
 #include <pigaco/packaging/PackageManager.hpp>
 
+#include <boost/filesystem.hpp>
+
 INITIALIZE_EASYLOGGINGPP
 
 namespace pigaco
@@ -169,8 +171,21 @@ namespace pigaco
         LOG(INFO) << "Initializing PiGaCo App-Class.";
         m_qmlApplicationEngine = new QQmlApplicationEngine();
 
+        std::string configPath = "";
+
+        if(boost::filesystem::exists("./config.yml")) {
+            configPath = "./config.yml";
+        } else if(boost::filesystem::exists("/usr/local/etc/piga_host_config.yml")) {
+            configPath = "/usr/local/etc/piga_host_config.yml";
+        } else if(boost::filesystem::exists("/usr/etc/piga_host_config.yml")) {
+            configPath = "/usr/etc/piga_host_config.yml";
+        } else {
+            //Just use the default if nothing exists anywhere...
+            configPath = "./config.yml";
+        }
+
         m_playerManager = std::make_shared<piga::PlayerManager>();
-        m_host = std::make_shared<piga::Host>("config.yml", m_playerManager);
+        m_host = std::make_shared<piga::Host>(configPath, m_playerManager);
 
         LOG(INFO) << "Starting the piga host.";
         m_host->init();
