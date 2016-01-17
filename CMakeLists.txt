@@ -18,6 +18,7 @@ set(VERSION_MAJOR "1" CACHE STRING "Major-Version")
 set(VERSION_MINOR "0" CACHE STRING "Minor-Version")
 set(VERSION_PATCH "0" CACHE STRING "Patch-Version")
 set(VERSION_TWEAK "0" CACHE STRING "Tweak-Version")
+set(PIGACO_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_TWEAK})
 
 SET(HDRS
     ${HDR}/App.hpp
@@ -103,21 +104,10 @@ elseif()
     message(STATUS "Did not find Sigc++2! Please install it before you try to compile again.")
 endif()
 
-ExternalProject_Add(GLM_Project
-    PREFIX glm
-    GIT_REPOSITORY https://github.com/g-truc/glm.git
-    GIT_TAG 0.9.5.4
-    UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND ""
-    INSTALL_COMMAND ""
-    CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
-)
-
-add_dependencies(pigaco GLM_Project)
-
-# GLM Headers in the glm/ path.
-include_directories(SYSTEM ${CMAKE_CURRENT_BINARY_DIR}/glm/src/GLM_Project/)
+find_package(GLM REQUIRED)
+if(${GLM_FOUND})
+    include_directories(${GLM_INCLUDE_DIR})
+endif()
 
 # Add yaml-cpp
 find_package(YamlCpp REQUIRED)
@@ -151,9 +141,6 @@ find_package(Libpiga REQUIRED)
 if(${Libpiga_FOUND})
     target_link_libraries(pigaco ${Libpiga_LIBRARIES})
     include_directories(${Libpiga_INCLUDE_DIRS})
-    message(STATUS "Libpiga found!: " ${Libpiga_LIBRARIES})
-else()
-    message(STATUS "Libpiga not found!")
 endif()
 
 add_custom_command(TARGET pigaco
@@ -163,7 +150,36 @@ add_custom_command(TARGET pigaco
 
 target_link_libraries(pigaco -lrt)
 
-install(TARGETS pigaco DESTINATION pigaco)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/piga_host_config.yml.in
+    ${CMAKE_CURRENT_BINARY_DIR}/piga_host_config.yml)
+configure_file(${CMAKE_MODULE_PATH}/Definitions.hpp.in
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/pigaco/Definitions.hpp)
+
+include(CMakePackageConfigHelpers)
+set_property(TARGET pigaco PROPERTY VERSION ${PIGACO_VERSION})
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/PigacoConfigVersion.cmake"
+    VERSION ${PIGACO_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+install(TARGETS pigaco EXPORT PigacoTargets
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    INCLUDES DESTINATION include
+    RUNTIME DESTINATION bin)
+
+# Data files
+install(
+    DIRECTORY
+        ${CMAKE_CURRENT_SOURCE_DIR}/Data
+    DESTINATION ../var/piga)
+
+# Configuration files
+install(
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/piga_host_config.yml
+    DESTINATION ../etc)
+
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Pigaco Console Suite")
 set(CPACK_PACKAGE_VENDOR "Pigaco")
 set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})

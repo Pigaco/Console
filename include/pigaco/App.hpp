@@ -77,6 +77,7 @@ namespace pigaco
 
             bool m_end = false;
             bool m_isSleeping = false;
+            std::string m_dataPath = "Data";
 
             piga::GameEvent m_cacheGameEvent;
     };

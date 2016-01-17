@@ -204,6 +204,10 @@ namespace pigaco
                 packagesPath = doc["PackagesConfigFile"].as<std::string>();
                 LOG(DEBUG) << "No \"PackagesConfigFile\" property set in \"" << configPath << "\". Using \"" << packagesConfigFile << "\".";
             }
+            if(doc["DataPath"]) {
+                m_dataPath = doc["PackagesConfigFile"].as<std::string>();
+                LOG(DEBUG) << "No \"PackagesConfigFile\" property set in \"" << configPath << "\". Using \"" << packagesConfigFile << "\".";
+            }
         } catch(YAML::BadFile &e) {
             LOG(INFO) << "Config file is not readable!";
         }
@@ -244,9 +248,9 @@ namespace pigaco
         qmlRegisterType<Game>("com.pigaco.managing", 1, 0, "Game");
         m_qmlApplicationEngine->rootContext()->setContextProperty("dirScanner", m_directoryScanner.get());
         m_qmlApplicationEngine->rootContext()->setContextProperty("playerManager", m_players.get());
-        m_qmlApplicationEngine->addImportPath("Data/forms/");
+        m_qmlApplicationEngine->addImportPath((m_dataPath + "/forms/").c_str());
 
-        m_qmlApplicationEngine->load(QUrl::fromLocalFile("Data/forms/MainMenu.qml"));
+        m_qmlApplicationEngine->load(QUrl::fromLocalFile((m_dataPath + "/forms/MainMenu.qml").c_str()));
 
         QObject *topLevel = m_qmlApplicationEngine->rootObjects().value(0);
         m_qQuickWindow = qobject_cast<QQuickWindow*>(topLevel);
@@ -260,8 +264,9 @@ namespace pigaco
         LOG(DEBUG) << "Creating the Wt HTTP server.";
 
         try {
-            m_webServer = new Wt::WServer("Pigaco", "Data/Config/wt_config.xml");
-            m_webServer->setServerConfiguration(argc, argv, "Data/Config/wthttpd.conf");
+            m_webServer = new Wt::WServer("Pigaco", m_dataPath + "/Config/wt_config.xml");
+            m_webServer->setServerConfiguration(argc, argv, m_dataPath + "/Config/wthttpd.conf");
+            m_webServer->setAppRoot(m_dataPath + "/Docroot/");
 
             boost::function<Wt::WApplication* (const Wt::WEnvironment&)> createServer = [&](const Wt::WEnvironment &env){
                 LOG(DEBUG) << "Creating the HTTP admin-app class. (Server successfully initialised.)";

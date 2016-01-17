@@ -1,0 +1,20 @@
+# This is a sample configuration file for the piga system.
+# Please use this file as a reference and/or basis for your installation.
+
+# Pigaco Section
+# Thsese settings are read by the Pigaco program.
+PackagesPath: "/var/piga/Games"
+PackagesConfigFile: "/var/piga/Packages.yml"
+
+# Libpiga section
+# These sections are read by the Libpiga host code.
+Hosts:
+#  - ./path_to_host.so
+#  - ./path_to_other_host.so
+Name: "Pigaco System"
+Networked:
+    ServerPort: 17010
+    MaxClientCount: 1
+    MaxChannelCount: 2
+    MaxBandwithUp: 0
+    MaxBandwithDown: 0

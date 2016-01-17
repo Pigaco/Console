@@ -1,0 +1,9 @@
+#pragma once
+
+/*
+ * Version definitons
+ */
+#define PIGACO_VERSION_MAJOR ${VERSION_MAJOR}
+#define PIGACO_VERSION_MINOR ${VERSION_MINOR}
+#define PIGACO_VERSION_MINI ${VERSION_PATCH}
+#define PIGACO_VERSION_BUILD ${VERSION_TWEAK}
