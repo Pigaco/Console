@@ -5,6 +5,7 @@
 # Thsese settings are read by the Pigaco program.
 PackagesPath: "/var/piga/Games"
 PackagesConfigFile: "/var/piga/Packages.yml"
+DataPath: "/var/piga/Data"
 
 # Libpiga section
 # These sections are read by the Libpiga host code.
