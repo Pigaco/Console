@@ -375,23 +375,23 @@ namespace pigaco
             {
                 case piga::UP:
                     LOG(INFO) << "Input UP";
-                    QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Up, Qt::NoModifier));
+                    QCoreApplication::postEvent(m_qQuickWindow, new QKeyEvent(type, Qt::Key::Key_Up, Qt::NoModifier));
                     break;
                 case piga::DOWN:
                     LOG(INFO) << "Input DOWN";
-                    QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Down, Qt::NoModifier));
+                    QCoreApplication::postEvent(m_qQuickWindow, new QKeyEvent(type, Qt::Key::Key_Down, Qt::NoModifier));
                     break;
                 case piga::LEFT:
                     LOG(INFO) << "Input LEFT";
-                    QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Left, Qt::NoModifier));
+                    QCoreApplication::postEvent(m_qQuickWindow, new QKeyEvent(type, Qt::Key::Key_Left, Qt::NoModifier));
                     break;
                 case piga::RIGHT:
                     LOG(INFO) << "Input RIGHT";
-                    QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Right, Qt::NoModifier));
+                    QCoreApplication::postEvent(m_qQuickWindow, new QKeyEvent(type, Qt::Key::Key_Right, Qt::NoModifier));
                     break;
                 case piga::ACTION:
                     LOG(INFO) << "Input ACTION";
-                    QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Return, Qt::NoModifier));
+                    QCoreApplication::postEvent(m_qQuickWindow, new QKeyEvent(type, Qt::Key::Key_Return, Qt::NoModifier));
                     break;
 
                 case piga::BUTTON1:
