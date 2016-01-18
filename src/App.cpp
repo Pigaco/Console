@@ -357,6 +357,7 @@ namespace pigaco
     }
     void App::onGameEvent(const piga::GameEvent &gameEvent, float frametime)
     {
+        LOG(INFO) << "Game Event Happened: " << gameEvent.type();
         if(gameEvent.type() == piga::GameEvent::GameInput)
         {
             QEvent::Type type;
