@@ -180,7 +180,7 @@ namespace pigaco
         } else if(boost::filesystem::exists("/usr/local/etc/piga_host_config.yml")) {
             configPath = "/usr/local/etc/piga_host_config.yml";
         } else if(boost::filesystem::exists("/etc/piga_host_config.yml")) {
-            configPath = "/usr/etc/piga_host_config.yml";
+            configPath = "/etc/piga_host_config.yml";
         } else {
             //Just use the default if nothing exists anywhere...
             configPath = "./config.yml";
