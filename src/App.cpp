@@ -364,26 +364,33 @@ namespace pigaco
             if(gameEvent.gameInput.state())
             {
                 type = QEvent::KeyPress;
+                LOG(INFO) << "Type Press";
             }
             else
             {
                 type = QEvent::KeyRelease;
+                LOG(INFO) << "Type Release";
             }
             switch(gameEvent.gameInput.control())
             {
                 case piga::UP:
+                    LOG(INFO) << "Input UP";
                     QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Up, Qt::NoModifier));
                     break;
                 case piga::DOWN:
+                    LOG(INFO) << "Input DOWN";
                     QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Down, Qt::NoModifier));
                     break;
                 case piga::LEFT:
+                    LOG(INFO) << "Input LEFT";
                     QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Left, Qt::NoModifier));
                     break;
                 case piga::RIGHT:
+                    LOG(INFO) << "Input RIGHT";
                     QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Right, Qt::NoModifier));
                     break;
                 case piga::ACTION:
+                    LOG(INFO) << "Input ACTION";
                     QCoreApplication::postEvent(m_qmlApplicationEngine, new QKeyEvent(type, Qt::Key::Key_Return, Qt::NoModifier));
                     break;
 
