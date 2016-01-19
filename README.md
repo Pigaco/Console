@@ -14,7 +14,7 @@ Checkout after you have cloned the repository:
 
     git submodule update --init --recursive
 
-[![Build Status](http://root.maximaximal.com/jenkins/buildStatus/icon?job=Piga&build=27)](http://root.maximaximal.com/jenkins/job/Piga/27/)
+[![Build Status](http://root.maximaximal.com/jenkins/job/Console_x32/badge/icon)](http://root.maximaximal.com/jenkins/job/Console_x32/)
 
 This is the official repository for the piga source code. The piga project 
 is aimed to create a new arcade console together with its own games using 
