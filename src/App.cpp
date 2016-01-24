@@ -202,7 +202,7 @@ namespace pigaco
                 LOG(INFO) << "No \"PackagesPath\" property set in \"" << configPath << "\". Using \"" << packagesPath << "\".";
             }
             if(doc["PackagesConfigFile"]) {
-                packagesPath = doc["PackagesConfigFile"].as<std::string>();
+                packagesConfigFile = doc["PackagesConfigFile"].as<std::string>();
             } else {
                 LOG(INFO) << "No \"PackagesConfigFile\" property set in \"" << configPath << "\". Using \"" << packagesConfigFile << "\".";
             }
