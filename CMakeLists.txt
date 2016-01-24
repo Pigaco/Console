@@ -189,7 +189,7 @@ set(CPACK_PACKAGE_VERSION_TWEAK ${PIGACO_VERSION_TWEAK})
 set(CPACK_DEBIAN_PACKAGE_NAME "piga-pigaco")
 set(CPACK_DEBIAN_PACKAGE_HOMEPAHE "https://github.com/pigaco/console")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS
-"libboost-filesystem1.55.0 (>= 1.55.0), libboost-thread1.55.0 (>= 1.55.0), libboost-system1.55.0 (>= 1.55.0), libyaml-cpp0.5 (>= 0.5.1-1), libstdc++6 (>= 4.9.2-10), piga-libpiga (>= 0.7.0), libquazip-qt5-1 (>= 0.7), libcrypto++9 (>= 5.6.1), libwt38 (>= 3.3.3), libsigc++-2.0-0c2a (>= 2.4.0-1)")
+"libboost-filesystem1.55.0 (>= 1.55.0), libboost-thread1.55.0 (>= 1.55.0), libboost-system1.55.0 (>= 1.55.0), libyaml-cpp0.5 (>= 0.5.1-1), libstdc++6 (>= 4.9.2-10), piga-libpiga (>= 0.6.0), libquazip-qt5-1 (>= 0.7), libcrypto++9 (>= 5.6.1), libwt38 (>= 3.3.3), libsigc++-2.0-0c2a (>= 2.4.0-1)")
 set(CPACK_PACKAGE_NAME "piga-pigaco")
 set(CPACK_GENERATOR "DEB")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Max Heisinger <mail@maximaximal.com>")
