@@ -241,7 +241,7 @@ namespace pigaco
         LOG(DEBUG) << "Starting the package manager.";
         m_packageManager = std::make_shared<packaging::PackageManager>();
         LOG(DEBUG) << "Reading package data.";
-        m_packageManager->readData("Packages.yml", "Games");
+        m_packageManager->readData(packagesConfigFile, packagesPath);
 
         LOG(DEBUG) << "Starting the directory scanner with data from the package manager.";
         m_directoryScanner = std::make_shared<DirectoryScanner>(m_host);
