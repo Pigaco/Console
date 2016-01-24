@@ -27,6 +27,7 @@ class Game : public QObject
             Directory = piga::GameHost::Directory,
             BackgroundImage = piga::GameHost::BackgroundImage,
             Logo = piga::GameHost::Logo,
+            AbsolutePath = piga::GameHost::AbsolutePath,
 
             _COUN = piga::GameHost::_COUNT
         };

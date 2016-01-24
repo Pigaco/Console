@@ -133,10 +133,18 @@ namespace pigaco
                 result.setValue(game.get());
                 break;
             case BackgroundImageRole:
-                result = QDir::currentPath() + "/" + game->getConfig(Game::BackgroundImage);
+                if(game->getConfig(Game::AbsolutePath) == "0") {
+                    result = QDir::currentPath() + "/" + game->getConfig(Game::BackgroundImage);
+                } else {
+                    result = game->getConfig(Game::BackgroundImage);
+                }
                 break;
             case LogoImageRole:
-                result = QDir::currentPath() + "/" + game->getConfig(Game::Logo);
+                if(game->getConfig(piga::GameHost::AbsolutePath) == "0") {
+                    result = QDir::currentPath() + "/" + game->getConfig(Game::Logo);
+                } else {
+                    result = game->getConfig(Game::Logo);
+                }
                 break;
         }
 
