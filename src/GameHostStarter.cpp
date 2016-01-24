@@ -33,9 +33,16 @@ bool GameHostStarter::isRunning(bool fsCheck)
 
 void GameHostStarter::startGame(const std::string &command, const std::string &arguments)
 {
-    LOG(INFO) << "Starting \"" << getConfig(ConfigValue::Name) << "\" with executable \"" << QDir::currentPath().toStdString() + "/" + command << "\".";
+    QString cmd;
+    if(getConfig(AbsolutePath) == "0") {
+        cmd += QDir::currentPath() + "/";
+    }
+
+    cmd += QString::fromStdString(command) + " " + QString::fromStdString(arguments);
+
+    LOG(INFO) << "Starting \"" << cmd.toStdString() << "\"";
     LOG(INFO) << "Using arguments: \"" << arguments << "\"";
-    m_gameProcess->start(QDir::currentPath() + "/" + QString::fromStdString(command) + " " + QString::fromStdString(arguments));
+    m_gameProcess->start(cmd);
 }
 
 void GameHostStarter::gameEnded(int code, QProcess::ExitStatus status)

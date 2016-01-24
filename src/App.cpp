@@ -198,15 +198,18 @@ namespace pigaco
 
             if(doc["PackagesPath"]) {
                 packagesPath = doc["PackagesPath"].as<std::string>();
-                LOG(DEBUG) << "No \"PackagesPath\" property set in \"" << configPath << "\". Using \"" << packagesPath << "\".";
+            } else {
+                LOG(INFO) << "No \"PackagesPath\" property set in \"" << configPath << "\". Using \"" << packagesPath << "\".";
             }
             if(doc["PackagesConfigFile"]) {
                 packagesPath = doc["PackagesConfigFile"].as<std::string>();
-                LOG(DEBUG) << "No \"PackagesConfigFile\" property set in \"" << configPath << "\". Using \"" << packagesConfigFile << "\".";
+            } else {
+                LOG(INFO) << "No \"PackagesConfigFile\" property set in \"" << configPath << "\". Using \"" << packagesConfigFile << "\".";
             }
             if(doc["DataPath"]) {
                 m_dataPath = doc["DataPath"].as<std::string>();
-                LOG(DEBUG) << "No \"DataPath\" property set in \"" << configPath << "\". Using \"" << m_dataPath << "\".";
+            } else {
+                LOG(INFO) << "No \"DataPath\" property set in \"" << configPath << "\". Using \"" << m_dataPath << "\".";
             }
         } catch(YAML::BadFile &e) {
             LOG(INFO) << "Config file is not readable!";

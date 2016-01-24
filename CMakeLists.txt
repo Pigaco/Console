@@ -15,7 +15,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 set(PIGACO_VERSION_MAJOR "0" CACHE STRING "Major-Version")
-set(PIGACO_VERSION_MINOR "6" CACHE STRING "Minor-Version")
+set(PIGACO_VERSION_MINOR "7" CACHE STRING "Minor-Version")
 set(PIGACO_VERSION_PATCH "0" CACHE STRING "Patch-Version")
 set(PIGACO_VERSION_TWEAK "0" CACHE STRING "Tweak-Version")
 set(PIGACO_VERSION ${PIGACO_VERSION_MAJOR}.${PIGACO_VERSION_MINOR}.${PIGACO_VERSION_PATCH}.${PIGACO_VERSION_TWEAK})
@@ -152,7 +152,7 @@ target_link_libraries(pigaco -lrt)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/piga_host_config.yml.in
     ${CMAKE_CURRENT_BINARY_DIR}/piga_host_config.yml)
-configure_file(${CMAKE_MODULE_PATH}/Definitions.hpp.in
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Definitions.hpp.in
     ${CMAKE_CURRENT_SOURCE_DIR}/include/pigaco/Definitions.hpp)
 
 include(CMakePackageConfigHelpers)
@@ -189,7 +189,7 @@ set(CPACK_PACKAGE_VERSION_TWEAK ${PIGACO_VERSION_TWEAK})
 set(CPACK_DEBIAN_PACKAGE_NAME "piga-pigaco")
 set(CPACK_DEBIAN_PACKAGE_HOMEPAHE "https://github.com/pigaco/console")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS
-"libboost-filesystem1.55.0 (>= 1.55.0), libboost-thread1.55.0 (>= 1.55.0), libboost-system1.55.0 (>= 1.55.0), libyaml-cpp0.5 (>= 0.5.1-1), libstdc++6 (>= 4.9.2-10), piga-libpiga (>= 0.6.0), libquazip-qt5-1 (>= 0.7), libcrypto++9 (>= 5.6.1), libwt38 (>= 3.3.3), libsigc++-2.0-0c2a (>= 2.4.0-1)")
+"libboost-filesystem1.55.0 (>= 1.55.0), libboost-thread1.55.0 (>= 1.55.0), libboost-system1.55.0 (>= 1.55.0), libyaml-cpp0.5 (>= 0.5.1-1), libstdc++6 (>= 4.9.2-10), piga-libpiga (>= 0.7.0), libquazip-qt5-1 (>= 0.7), libcrypto++9 (>= 5.6.1), libwt38 (>= 3.3.3), libsigc++-2.0-0c2a (>= 2.4.0-1)")
 set(CPACK_PACKAGE_NAME "piga-pigaco")
 set(CPACK_GENERATOR "DEB")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Max Heisinger <mail@maximaximal.com>")
