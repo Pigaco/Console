@@ -12,6 +12,9 @@ DataPath: "/var/piga/Data"
 Hosts:
 #  - ./path_to_host.so
 #  - ./path_to_other_host.so
+# Default hosts:
+  - /usr/lib/libhost_arduino_serial.so
+
 Name: "Pigaco System"
 Networked:
     ServerPort: 17010
